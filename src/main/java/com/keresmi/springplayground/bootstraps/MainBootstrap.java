@@ -32,16 +32,43 @@ public class MainBootstrap implements ApplicationListener<ContextRefreshedEvent>
     }
 
     private void initData() {
-
         Publisher helion = new Publisher("Helion");
-        Book springInAction = new Book("Spring in Action, Fourth Edition", "978-83-283-0849-7", helion);
-        Author cWalls = new Author("Craig", "Walls");
-
-        springInAction.getAuthors().add(cWalls);
-        cWalls.getBooks().add(springInAction);
+        Publisher albatros = new Publisher("Albatros");
 
         publisherRepository.save(helion);
+        publisherRepository.save(albatros);
+
+        Author cWalls = new Author("Craig", "Walls");
+        Book springInAction = new Book("Spring in Action, Fourth Edition",
+                "978-83-283-0849-7",
+                helion);
+
+        cWalls.getBooks().add(springInAction);
+        springInAction.getAuthors().add(cWalls);
+
         authorRepository.save(cWalls);
         bookRepository.save(springInAction);
+
+        Author nicholasSparks = new Author("Nicholas", "Sparks");
+        Book theLastSong = new Book("The Last Song",
+                "9788379856800",
+                albatros);
+
+        nicholasSparks.getBooks().add(theLastSong);
+        theLastSong.getAuthors().add(nicholasSparks);
+
+        authorRepository.save(nicholasSparks);
+        bookRepository.save(theLastSong);
+
+        Author stephenKing = new Author("Stephen", "King");
+        Book theGreenMile = new Book("The Green Mile",
+                "9788380973091",
+                albatros);
+
+        stephenKing.getBooks().add(theGreenMile);
+        theGreenMile.getAuthors().add(stephenKing);
+
+        authorRepository.save(stephenKing);
+        bookRepository.save(theGreenMile);
     }
 }
